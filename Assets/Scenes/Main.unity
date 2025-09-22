@@ -3678,8 +3678,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b364dbcf50b74a41a1216edf5c64241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backDistance: 3.8
-  moveTiming: 2.2
+  backDistance: 3.9
+  moveTiming: 1.9
 --- !u!61 &1781949810
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4042,8 +4042,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b364dbcf50b74a41a1216edf5c64241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backDistance: 3.8
-  moveTiming: 2.2
+  backDistance: 3.9
+  moveTiming: 1.9
 --- !u!61 &1835439353
 BoxCollider2D:
   m_ObjectHideFlags: 0
