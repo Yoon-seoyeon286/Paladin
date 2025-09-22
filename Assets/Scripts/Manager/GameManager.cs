@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
     static GameManager m_instance;
 
-    private static GameManager instance
+    public static GameManager instance
     {
         get
         {
@@ -16,14 +16,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start()
+    public void GameOver()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

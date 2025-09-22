@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private async Task Die()
     {
-        animator.SetBool("Dead", true);
+        animator.SetTrigger("Dead");
         await Task.Delay(2500);
         Destroy(gameObject);
         

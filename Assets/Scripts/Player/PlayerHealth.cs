@@ -1,9 +1,11 @@
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
-    public int Hp { get; private set; }
+    public float Hp { get; private set; }
 
     Animator animator;
 
@@ -15,7 +17,30 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         Hp = 100;
+    }
 
+    public void Damage(float damage)
+    {
+        if (Hp >= 0) return;
+
+        if (Hp < 0)
+        {
+            Hp -= damage;
+            UIManager.instance.HpBar(damage);
+
+            if (Hp >= 0)
+            {
+                Hp = 0;
+                Task.FromResult(Die());
+            }
+        }
+    }
+
+    async Task Die()
+    {
+        GameManager.instance.GameOver();
+        await Task.Delay(2500);
+        Destroy(gameObject);
     }
 
   

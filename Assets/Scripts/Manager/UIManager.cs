@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    private static UIManager instance
+    public static UIManager instance
     {
         get
         {
@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
 
     public Image hpBarImage;
 
-    public void hpBar(float damage)
+    public void HpBar(float damage)
     {
         hpBarImage.fillAmount -= damage;
     }
