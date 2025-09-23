@@ -6,6 +6,7 @@ public class EnemyMove : MonoBehaviour
     public float stopDistance = 2f;
     public Transform player;
     Animator animator;
+    EnemyData enemyData;
 
     void Awake()
     {

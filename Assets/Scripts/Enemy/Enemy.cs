@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] public float Hp { get; private set; }
 
     private Animator animator;
+    EnemyData enemyData;
 
     private void Awake()
     {
@@ -16,7 +17,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        Hp = 100;
+        Hp = 100; 
     }
 
 
