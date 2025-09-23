@@ -78,7 +78,7 @@ public class PlayerMove : MonoBehaviour
 
     void ChooseTarget()
     {
-        if (currentTarget == null || !enemiesInRange.Contains(currentTarget))
+        if ( !enemiesInRange.Contains(currentTarget))
         {
             if (enemiesInRange.Count > 0)
             {

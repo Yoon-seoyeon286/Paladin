@@ -4,7 +4,7 @@ public class EnemySpawn : MonoBehaviour
 {
     public GameObject[] enemies;
     public Vector2 spawnPoint;
-    float maxSpawnTime = 5f;
+    float maxSpawnTime = 4f;
     float minSpawnTime = 1f;
     float spawnRate;
     float afterSpawnRate;

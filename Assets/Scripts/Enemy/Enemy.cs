@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public float Hp = 100;
 
     private Animator animator;
+    int deadCount;
 
 
     private void Awake()
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        deadCount = 0;
        
     }
 
@@ -42,6 +44,8 @@ public class Enemy : MonoBehaviour, IDamageable
     private async Task Die()
     {
         animator.SetTrigger("Dead");
+        deadCount++;
+        UIManager.instance.LevelText(deadCount);
         await Task.Delay(1500);
         Destroy(gameObject);
         
