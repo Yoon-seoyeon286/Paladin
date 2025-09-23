@@ -49,7 +49,6 @@ public class Enemy : MonoBehaviour, IDamageable
         UIManager.instance.LevelText(deadCount);
         Coin.instance.GetCoin(10);
     
-
         await Task.Delay(1500);
         Destroy(gameObject);
         

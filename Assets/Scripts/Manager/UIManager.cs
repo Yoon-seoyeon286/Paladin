@@ -24,7 +24,6 @@ public class UIManager : MonoBehaviour
 
     [Header("Lv text")]
     public Text lvText;
-    int level;
     int updateLevel = 0;
     int viewLevel = 1;
     int checkLevel = 5;
@@ -32,11 +31,12 @@ public class UIManager : MonoBehaviour
     [Header("Inventory")]
     public Image inventoryImage;
     public Text coinText;
+    int totalCoin=0;
 
 
     void Start()
     {
-        level = 0;
+
     }
 
     public void HpBar(float damage)
@@ -76,6 +76,8 @@ public class UIManager : MonoBehaviour
 
     public void HasCoin(int coin)
     {
-        coinText.text = coin+""; 
+        totalCoin += coin;
+        Debug.Log("총 코인: " + totalCoin);
+        coinText.text = totalCoin.ToString(); 
     }
 }

@@ -8,7 +8,7 @@ public class Coin : MonoBehaviour
         {
             if (m_instance == null)
             {
-                m_instance = FindAnyObjectByType<Coin>();
+                m_instance = FindFirstObjectByType<Coin>();
             }
             return m_instance;
         }
@@ -16,22 +16,15 @@ public class Coin : MonoBehaviour
 
     private static Coin m_instance;
 
-    [Header("coin")]
-    public int coinCount;
-
-
     void Start()
     {
-        coinCount = 0;
+
     }
 
     public void GetCoin(int count)
     {
-        int radomCoin = Random.Range(1, count);
-        coinCount += radomCoin;
-
-        UIManager.instance.HasCoin(coinCount);
-
+        int randomCoin = Random.Range(1, count);
+        UIManager.instance.HasCoin(randomCoin);
     }
 
 }
