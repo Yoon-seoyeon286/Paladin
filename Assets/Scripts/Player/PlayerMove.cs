@@ -6,7 +6,6 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] public float AttackRange { get; private set; }
     Animator animator;
-    IDamageable currentTarget;
 
 
     void Awake()
@@ -24,9 +23,8 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        CleanDeadEnemies();
-        ChooseTarget();
-        if (currentTarget != null)
+
+        if (enemiesInRange.Count > 0)
         {
             animator.SetBool("Attack", true);
         }
@@ -35,12 +33,14 @@ public class PlayerMove : MonoBehaviour
         {
             animator.SetBool("Attack", false);
         }
+
+        CleanDeadEnemies();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         IDamageable damageable = collision.GetComponent<IDamageable>();
-        if (damageable != null)
+        if (damageable != null && !enemiesInRange.Contains(damageable))
         {
             enemiesInRange.Add(damageable);
         }
@@ -59,15 +59,15 @@ public class PlayerMove : MonoBehaviour
 
     public void Smash(float damage)
     {
-        if (currentTarget != null)
+        foreach (IDamageable enemy in enemiesInRange)
         {
-            currentTarget.Damage(damage);
+            enemy.Damage(damage);
         }
     }
 
     void CleanDeadEnemies()
     {
-        for (int i = enemiesInRange.Count - 1; i > 0; i--)
+        for (int i = enemiesInRange.Count - 1; i >= 0; i--)
         {
             if (enemiesInRange[i] == null)
             {
@@ -75,21 +75,5 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
-
-    void ChooseTarget()
-    {
-        if ( !enemiesInRange.Contains(currentTarget))
-        {
-            if (enemiesInRange.Count > 0)
-            {
-                currentTarget = enemiesInRange[0];
-            }
-            else
-            {
-                currentTarget = null;
-            }
-        }
-    }
-
 
 }

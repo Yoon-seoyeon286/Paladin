@@ -27,6 +27,12 @@ public class UIManager : MonoBehaviour
     int level;
     int updateLevel = 0;
     int viewLevel = 1;
+    int checkLevel = 5;
+
+    [Header("Inventory")]
+    public Image inventoryImage;
+    public Text coinText;
+
 
     void Start()
     {
@@ -41,14 +47,35 @@ public class UIManager : MonoBehaviour
     public void LevelText(int level)
     {
         updateLevel += level;
-        if (updateLevel % 5 == 0)
+        if (updateLevel % checkLevel == 0)
         {
             viewLevel++;
+
+            if (viewLevel % 10 == 0)
+            {
+                checkLevel *= 2;
+            }
         }
 
         if (viewLevel <= 1000)
         {
             lvText.text = "Lv." + viewLevel;
         }
+    }
+
+
+    public void InventoryOnButton()
+    {
+        inventoryImage.gameObject.SetActive(true);
+    }
+
+    public void InventoryOffButton()
+    {
+        inventoryImage.gameObject.SetActive(false);
+    }
+
+    public void HasCoin(int coin)
+    {
+        coinText.text = coin+""; 
     }
 }

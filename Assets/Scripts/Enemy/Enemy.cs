@@ -45,7 +45,11 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         animator.SetTrigger("Dead");
         deadCount++;
+
         UIManager.instance.LevelText(deadCount);
+        Coin.instance.GetCoin(10);
+    
+
         await Task.Delay(1500);
         Destroy(gameObject);
         
