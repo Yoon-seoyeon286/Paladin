@@ -15,9 +15,11 @@ GameObject:
   - component: {fileID: 2545691673767070458}
   - component: {fileID: 7729200568480234278}
   - component: {fileID: 5313653677081536906}
-  m_Layer: 0
+  - component: {fileID: 1236770589313514883}
+  - component: {fileID: 2186800045468307497}
+  m_Layer: 3
   m_Name: Goat_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,3 +229,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1236770589313514883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256561026040223088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872e1ac21db994f16b5c48fab8ed91d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1.5
+  stopDistance: 2
+  player: {fileID: 6358049654783067754, guid: a9e6c394de235434f856aefcbe4c100a, type: 3}
+--- !u!114 &2186800045468307497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256561026040223088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ae33fcd3b56426ca15e84e4bc0e0c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp: 300

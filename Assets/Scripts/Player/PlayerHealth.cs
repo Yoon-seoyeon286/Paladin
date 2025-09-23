@@ -21,14 +21,14 @@ public class PlayerHealth : MonoBehaviour
 
     public void Damage(float damage)
     {
-        if (Hp >= 0) return;
+        if (Hp <= 0) return;
 
-        if (Hp < 0)
+        if (Hp > 0)
         {
             Hp -= damage;
             UIManager.instance.HpBar(damage);
 
-            if (Hp >= 0)
+            if (Hp <= 0)
             {
                 Hp = 0;
                 Task.FromResult(Die());

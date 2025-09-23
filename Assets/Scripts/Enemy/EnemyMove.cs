@@ -6,11 +6,19 @@ public class EnemyMove : MonoBehaviour
     public float stopDistance = 2f;
     public Transform player;
     Animator animator;
-    EnemyData enemyData;
+    PlayerHealth playerHealth;
+
 
     void Awake()
     {
+        
         animator = GetComponent<Animator>();
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+
+        if (playerObj != null)
+        {
+            playerHealth = playerObj.GetComponent<PlayerHealth>();
+        }
     }
 
     void Update()
@@ -35,7 +43,7 @@ public class EnemyMove : MonoBehaviour
 
     public void Attack(float damage)
     {
-        PlayerHealth playerHealth = FindAnyObjectByType<PlayerHealth>();
+       
         playerHealth.Damage(damage);
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable
 {
 
-    [SerializeField] public float Hp { get; private set; }
+    public float Hp = 100;
 
     private Animator animator;
-    EnemyData enemyData;
+
 
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        Hp = 100; 
+       
     }
 
 
@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private async Task Die()
     {
         animator.SetTrigger("Dead");
-        await Task.Delay(2500);
+        await Task.Delay(1500);
         Destroy(gameObject);
         
     }
