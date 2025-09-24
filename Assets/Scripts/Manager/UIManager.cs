@@ -20,8 +20,6 @@ public class UIManager : MonoBehaviour
     [Header("Hp_Bar image")]
     public Image hpBarImage;
 
-
-
     [Header("Lv text")]
     public Text lvText;
     int updateLevel = 0;
@@ -40,6 +38,8 @@ public class UIManager : MonoBehaviour
 
     [Header("Shop")]
     public Image shopImage;
+    public GameObject swordGachaImage;
+    int buyCoin = 500;
 
 
     [Header("Sword")]
@@ -47,7 +47,9 @@ public class UIManager : MonoBehaviour
     public RawImage[] SwordcoverImage;
     public Button[] swordUpgradeButton;
     public Text[] swordLevel;
+    public Slider[] swordLevelSlider;
     int swordTotalLevel = 0;
+    int swordUpgradeCoin = 150;
 
 
 
@@ -144,10 +146,26 @@ public class UIManager : MonoBehaviour
 
     //[shop]
 
+     //칼 상점 구매시 랜덤 뽑기 
     public void CashSword()
     {
-        Coin.instance.UseCoin(1000);
+        if (totalCoin >= buyCoin)
+        {
+            Coin.instance.UseCoin(buyCoin);
+            swordGachaImage.SetActive(true);
+
+            Invoke("SwordGachaImageOff", 5f);
+
+        }
     }
+
+     //칼 랜덤 화면 끄기
+    public void SwordGachaImageOff()
+    {
+        swordGachaImage.SetActive(false);
+    }
+
+
 
 
     //[Sword]
@@ -191,7 +209,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //Sword Level 활성화 및 레벨 텍스트 업데이트
+    //Sword Level 활성화 및 레벨 텍스트 업데이트 및 코인 소모
     public void SwordLevelUpdate(int level, string swordLevelName)
     {
 
@@ -204,19 +222,44 @@ public class UIManager : MonoBehaviour
             if (swordUpgradeButton[i].name == swordLevelName)
             {
                 swordUpgradeButton[i].gameObject.SetActive(true);
-                swordUpgradeButton[i].onClick.AddListener(() =>
+                Coin.instance.UseCoin(swordUpgradeCoin);
+
+                if (totalCoin >= swordUpgradeCoin)
                 {
-                    LevelTextUpdate(swordTotalLevel, i);
-                    swordUpgradeButton[i].gameObject.SetActive(false);
-                });
+                    swordUpgradeButton[i].onClick.AddListener(() =>
+                     {
+                         LevelTextUpdate(swordTotalLevel, i);
+                         swordUpgradeButton[i].gameObject.SetActive(false);
+                     });
+                }
+
+                else return;
+           
             }
         }
     }
-    
+
     //실제 레벨 텍스트 업데이트 담당
-     void LevelTextUpdate(int level, int index)
+    void LevelTextUpdate(int level, int index)
     {
         swordLevel[index].text = level.ToString();
+    }
+
+    // 레벨 슬라이더 조정
+    public void SwordLevelSlider(int swordCount, string sliderName)
+    {
+        foreach (Slider levelSlider in swordLevelSlider)
+        {
+            if (levelSlider.name == sliderName)
+            {
+                levelSlider.value = swordCount;
+
+                if (swordCount % 4 == 0)
+                {
+                    levelSlider.maxValue *= 2;
+                }
+            }
+        }
     }
         
 

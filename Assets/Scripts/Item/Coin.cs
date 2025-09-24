@@ -48,6 +48,8 @@ public class Coin : MonoBehaviour
         if (totalCoin >= coin)
         {
             totalCoin -= coin;
+
+            UIManager.instance.UseCoin(coin);
         }
 
         else return;

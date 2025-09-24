@@ -20,6 +20,7 @@ public class NormalSword : Sword
     {
         UIManager.instance.SworditemCover("N_S_Cover");
         base.GetSword();
+        UIManager.instance.SwordLevelSlider(SwordCount, "NormalSwordCount");
         UIManager.instance.SwordLevelUpdate(SwordLevel, "NormalSwordLevel");
     }
 

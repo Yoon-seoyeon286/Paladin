@@ -33,7 +33,6 @@ public class Sword : MonoBehaviour
     // 칼 얻었을 때
     public virtual void GetSword()
     {
-      
         SwordCount++;
 
         if (SwordCount % 2 == 0)
