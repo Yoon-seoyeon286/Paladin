@@ -44,11 +44,14 @@ public class UIManager : MonoBehaviour
 
     [Header("Sword")]
     public Text[] swordSetText;
-    public RawImage[] coverImage;
-    public Button[] upgradeButton;
+    public RawImage[] SwordcoverImage;
+    public Button[] swordUpgradeButton;
     public Text[] swordLevel;
+    int swordTotalLevel = 0;
 
 
+
+    //[Player]
 
     public void HpBar(float damage)
     {
@@ -75,7 +78,8 @@ public class UIManager : MonoBehaviour
     }
 
 
-    //인벤토리 On Off
+    //[인벤토리 On Off]
+
     public void InventoryOnButton()
     {
         inventoryImage.gameObject.SetActive(true);
@@ -86,7 +90,11 @@ public class UIManager : MonoBehaviour
         inventoryImage.gameObject.SetActive(false);
     }
 
-    //Coin
+
+
+    //[Coin]
+
+    //현재 가지고 있는 코인
     public void HasCoin(int coin)
     {
         totalCoin += coin;
@@ -98,6 +106,7 @@ public class UIManager : MonoBehaviour
 
     }
 
+    //사용한 코인을 빼기
     public void UseCoin(int coin)
     {
         totalCoin -= coin;
@@ -107,7 +116,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //PowerUp On Off
+
+    //[PowerUp OnOff]
+
     public void OnPowerUpButton()
     {
         powerUPImage.gameObject.SetActive(true);
@@ -119,7 +130,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-    //shop onOff
+    //[shop onOff]
 
     public void OnShopButton()
     {
@@ -131,14 +142,30 @@ public class UIManager : MonoBehaviour
         shopImage.gameObject.SetActive(false);
     }
 
-    //shop
+    //[shop]
+
     public void CashSword()
     {
         Coin.instance.UseCoin(1000);
     }
 
 
-    //Sword
+    //[Sword]
+
+
+    //커버 없애기 (아이템 활성화)
+    public void SworditemCover(string coverName)
+    {
+        foreach (RawImage itemCover in SwordcoverImage)
+        {
+            if (itemCover.name == coverName)
+            {
+                itemCover.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    //장착중 텍스트 활성화
     public void SetSwordTextOn(string swordName)
     {
         foreach (Text textObject in swordSetText)
@@ -147,9 +174,12 @@ public class UIManager : MonoBehaviour
             {
                 textObject.gameObject.SetActive(true);
             }
+
+            else return;
         }
     }
 
+    //장착중 텍스트 비활성화
     public void SetSwordTextOff(string swordName)
     {
         foreach (Text textObject in swordSetText)
@@ -160,5 +190,34 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
+    //Sword Level 활성화 및 레벨 텍스트 업데이트
+    public void SwordLevelUpdate(int level, string swordLevelName)
+    {
+
+        if (level <= 1) return;
+
+        swordTotalLevel++;
+
+        for (int i = 0; i < swordUpgradeButton.Length; i++)
+        {
+            if (swordUpgradeButton[i].name == swordLevelName)
+            {
+                swordUpgradeButton[i].gameObject.SetActive(true);
+                swordUpgradeButton[i].onClick.AddListener(() =>
+                {
+                    LevelTextUpdate(swordTotalLevel, i);
+                    swordUpgradeButton[i].gameObject.SetActive(false);
+                });
+            }
+        }
+    }
+    
+    //실제 레벨 텍스트 업데이트 담당
+     void LevelTextUpdate(int level, int index)
+    {
+        swordLevel[index].text = level.ToString();
+    }
+        
 
 }

@@ -19,7 +19,7 @@ public class Sword : MonoBehaviour
         }
 
         SwordCount = 0;
-        SwordLevel = 1;
+        SwordLevel = 0;
 
         SetSword = false;
     }
@@ -33,10 +33,13 @@ public class Sword : MonoBehaviour
     // 칼 얻었을 때
     public virtual void GetSword()
     {
+      
         SwordCount++;
+
         if (SwordCount % 2 == 0)
         {
             SwordLevel++;
+
         }
     }
 

@@ -18,7 +18,9 @@ public class NormalSword : Sword
 
     public override void GetSword()
     {
+        UIManager.instance.SworditemCover("N_S_Cover");
         base.GetSword();
+        UIManager.instance.SwordLevelUpdate(SwordLevel, "NormalSwordLevel");
     }
 
     public override void DamagePoint()
