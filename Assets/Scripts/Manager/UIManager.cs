@@ -42,6 +42,14 @@ public class UIManager : MonoBehaviour
     public Image shopImage;
 
 
+    [Header("Sword")]
+    public Text[] swordSetText;
+    public RawImage[] coverImage;
+    public Button[] upgradeButton;
+    public Text[] swordLevel;
+
+
+
     public void HpBar(float damage)
     {
         hpBarImage.fillAmount -= damage;
@@ -126,6 +134,31 @@ public class UIManager : MonoBehaviour
     //shop
     public void CashSword()
     {
-        Coin.instance.UseCoin(1000);   
+        Coin.instance.UseCoin(1000);
     }
+
+
+    //Sword
+    public void SetSwordTextOn(string swordName)
+    {
+        foreach (Text textObject in swordSetText)
+        {
+            if (textObject.name == swordName)
+            {
+                textObject.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void SetSwordTextOff(string swordName)
+    {
+        foreach (Text textObject in swordSetText)
+        {
+            if (textObject.name == swordName)
+            {
+                textObject.gameObject.SetActive(false);
+            }
+        }
+    }
+
 }

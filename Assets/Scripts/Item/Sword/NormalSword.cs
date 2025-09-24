@@ -7,16 +7,43 @@ public class NormalSword : Sword
     {
         SwordCount = 1;
         PlusDamage = 10;
+        SetSword = false;
+    }
+
+    public override void OnSwordCheck()
+    {
+        SetSword = true;
+        UIManager.instance.SetSwordTextOn("NormalSwordSet");
+    }
+
+    public override void GetSword()
+    {
+        base.GetSword();
     }
 
     public override void DamagePoint()
     {
         if (SetSword == true)
         {
-           TotalDamage += PlusDamage;
-           playerMove.Smash(TotalDamage);     
+            if (SwordLevel > 1)
+            {
+                PlusDamage += 5;
+            }
+
+            TotalDamage += PlusDamage;
+            playerMove.Smash(TotalDamage);
         }
 
+        else if (SetSword == false)
+        {
+            playerMove.Smash(0);
+        }
 
+    }
+
+    public override void OffSword()
+    {
+        base.OffSword();
+        UIManager.instance.SetSwordTextOff("NormalSwordSet");
     }
 }
