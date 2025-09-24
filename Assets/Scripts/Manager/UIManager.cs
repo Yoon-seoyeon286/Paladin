@@ -38,11 +38,9 @@ public class UIManager : MonoBehaviour
     public int powerCoin;
     public int hpCoin;
 
+    [Header("Shop")]
+    public Image shopImage;
 
-    void Start()
-    {
-
-    }
 
     public void HpBar(float damage)
     {
@@ -69,7 +67,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-     //인벤토리 On Off
+    //인벤토리 On Off
     public void InventoryOnButton()
     {
         inventoryImage.gameObject.SetActive(true);
@@ -92,6 +90,15 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void UseCoin(int coin)
+    {
+        totalCoin -= coin;
+        for (int i = 0; i < coinText.Length; i++)
+        {
+            coinText[i].text = totalCoin.ToString();
+        }
+    }
+
     //PowerUp On Off
     public void OnPowerUpButton()
     {
@@ -101,5 +108,24 @@ public class UIManager : MonoBehaviour
     public void OffPowerUpButton()
     {
         powerUPImage.gameObject.SetActive(false);
+    }
+
+
+    //shop onOff
+
+    public void OnShopButton()
+    {
+        shopImage.gameObject.SetActive(true);
+    }
+
+    public void OffShopButton()
+    {
+        shopImage.gameObject.SetActive(false);
+    }
+
+    //shop
+    public void CashSword()
+    {
+        Coin.instance.UseCoin(1000);   
     }
 }

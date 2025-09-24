@@ -7,6 +7,7 @@ public class EnemyMove : MonoBehaviour
     public Transform player;
     Animator animator;
     PlayerHealth playerHealth;
+    public float totalDamage;
 
 
     void Awake()
@@ -43,7 +44,14 @@ public class EnemyMove : MonoBehaviour
 
     public void Attack(float damage)
     {
-       
-        playerHealth.Damage(damage);
+        if (UIManager.instance.viewLevel % 10 == 0)
+        {
+            damage += 50;
+        }
+
+        totalDamage += damage;
+
+
+        playerHealth.Damage(totalDamage);
     }
 }

@@ -1,6 +1,8 @@
 using UnityEngine;
 
-public class IEnhanceable
+public interface IEnhanceable
 {
+    public void PowerUp();
+    public void NeedCoin();
     
 }

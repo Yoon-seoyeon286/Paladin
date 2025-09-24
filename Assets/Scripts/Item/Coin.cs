@@ -16,9 +16,17 @@ public class Coin : MonoBehaviour
 
     private static Coin m_instance;
 
+    public int totalCoin;
+    int remainCoin;
+
     void Start()
     {
+        totalCoin = 0;
+    }
 
+    void Update()
+    {
+        
     }
 
     public void GetCoin(int count)
@@ -28,9 +36,21 @@ public class Coin : MonoBehaviour
         {
             count += 10;
         }
-        
+
         int randomCoin = Random.Range(1, count);
         UIManager.instance.HasCoin(randomCoin);
+
+        totalCoin += randomCoin;
+    }
+
+    public void UseCoin(int coin)
+    {
+        if (totalCoin >= coin)
+        {
+            totalCoin -= coin;
+        }
+
+        else return;
     }
 
 }

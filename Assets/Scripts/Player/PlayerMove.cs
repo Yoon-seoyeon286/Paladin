@@ -5,6 +5,7 @@ using UnityEngine.InputSystem.Utilities;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] public float AttackRange { get; private set; }
+    float totalDamage=0;
     Animator animator;
 
 
@@ -59,9 +60,11 @@ public class PlayerMove : MonoBehaviour
 
     public void Smash(float damage)
     {
+        totalDamage += damage;
+
         foreach (IDamageable enemy in enemiesInRange)
         {
-            enemy.Damage(damage);
+            enemy.Damage(totalDamage);
         }
     }
 
