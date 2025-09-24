@@ -25,6 +25,12 @@ public class EnemySpawn : MonoBehaviour
     {
         afterSpawnRate += Time.deltaTime;
 
+        //레벨이 10 단위로 오를수록 소환되는 적의 수는 증가 
+        if (UIManager.instance.viewLevel % 10 == 0)
+        {
+            maxEnemyCount += 10;
+        }
+
         if (currentEnemyCount <= maxEnemyCount && afterSpawnRate >= spawnRate)
         {
             SpawnEnemy();

@@ -25,13 +25,18 @@ public class UIManager : MonoBehaviour
     [Header("Lv text")]
     public Text lvText;
     int updateLevel = 0;
-    int viewLevel = 1;
+    public int viewLevel = 1;
     int checkLevel = 5;
 
     [Header("Inventory")]
     public Image inventoryImage;
-    public Text coinText;
-    int totalCoin=0;
+    public Text[] coinText;
+    int totalCoin = 0;
+
+    [Header("Power Up")]
+    public Image powerUPImage;
+    public int powerCoin;
+    public int hpCoin;
 
 
     void Start()
@@ -64,6 +69,7 @@ public class UIManager : MonoBehaviour
     }
 
 
+     //인벤토리 On Off
     public void InventoryOnButton()
     {
         inventoryImage.gameObject.SetActive(true);
@@ -74,10 +80,26 @@ public class UIManager : MonoBehaviour
         inventoryImage.gameObject.SetActive(false);
     }
 
+    //Coin
     public void HasCoin(int coin)
     {
         totalCoin += coin;
-        Debug.Log("총 코인: " + totalCoin);
-        coinText.text = totalCoin.ToString(); 
+
+        for (int i = 0; i < coinText.Length; i++)
+        {
+            coinText[i].text = totalCoin.ToString();
+        }
+
+    }
+
+    //PowerUp On Off
+    public void OnPowerUpButton()
+    {
+        powerUPImage.gameObject.SetActive(true);
+    }
+
+    public void OffPowerUpButton()
+    {
+        powerUPImage.gameObject.SetActive(false);
     }
 }
