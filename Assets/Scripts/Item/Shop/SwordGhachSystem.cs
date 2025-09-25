@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class SwordGhachSystem : MonoBehaviour
 {
     public GameObject[] swordObjects;
+    public RawImage[] swordLineColor;
+    public Image[] swordImage;
+    public SwordData[] swordDatas;
     public int pickCount = 4;
 
     public void GhachSword()
@@ -22,5 +25,29 @@ public class SwordGhachSystem : MonoBehaviour
             swordsToShuffle[randomIndex] = temp;
         }
 
+        //뽑은 4개를 새로운 리스트에 넣기
+        List<GameObject> pickedSwords = new List<GameObject>();
+
+        for (int i = 0; i < pickCount; i++)
+        {
+            pickedSwords.Add(swordsToShuffle[i]);
+        }
+
+        for (int i = 0; i < pickedSwords.Count; i++)
+        {
+            SwordData currentSwordData = System.Array.Find(swordDatas, data => data.swordName == pickedSwords[i].name);
+
+            if (currentSwordData != null)
+            {
+                swordLineColor[i].color = currentSwordData.baseColor;
+                swordImage[i].gameObject.SetActive(true);
+                swordImage[i].sprite = currentSwordData.swordImage;
+              }  
+
+
+        }
+
     }
+
+
 }

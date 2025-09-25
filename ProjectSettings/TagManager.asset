@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - NormalSword
+  - RarSword
+  - UniqueSword
+  - EpicSword
   layers:
   - Default
   - TransparentFX

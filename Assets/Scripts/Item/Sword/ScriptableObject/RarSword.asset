@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9dd4c5178f24c6e97d9dca0f14c1a6, type: 3}
   m_Name: RarSword
   m_EditorClassIdentifier: 
-  baseDamage: 0
-  swordName: 
-  baseColor: {r: 0, g: 0, b: 0, a: 0}
-  swordImage: {fileID: 0}
+  baseDamage: 18
+  swordName: RarSword
+  baseColor: {r: 1, g: 0.6885808, b: 0, a: 0}
+  swordImage: {fileID: 3667748512962673061, guid: 8783c0198a6694befbc268ff721287d9, type: 3}

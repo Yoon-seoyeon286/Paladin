@@ -23,6 +23,7 @@ public class GhachManager : MonoBehaviour
     {
         for (int i = 0; i < swordLineColor.Length; i++)
         {
+            swordLineColor[i].gameObject.SetActive(true);
             swordLineColor[i].color = swordData.baseColor;
         }
 

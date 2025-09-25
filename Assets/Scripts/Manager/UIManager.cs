@@ -36,6 +36,10 @@ public class UIManager : MonoBehaviour
     public RawImage coinNotEnough;
 
 
+    [Header("Ghach")]
+    public SwordGhachSystem swordGhachSystem;
+
+
 
     [Header("Power Up")]
     public Image powerUPImage;
@@ -176,6 +180,7 @@ public class UIManager : MonoBehaviour
         {
             Coin.instance.UseCoin(buyCoin);
             swordGachaImage.SetActive(true);
+            swordGhachSystem.GhachSword();
 
             Invoke("SwordGachaImageOff", 5f);
         }

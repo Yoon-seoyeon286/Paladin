@@ -7,6 +7,13 @@ public class SwordData : ScriptableObject
     public float baseDamage;
     public string swordName;
     public Color baseColor;
-    public Image swordImage;
+    public Sprite swordImage;
+
+
+    [Header("인벤토리 연동")]
+    public string coverName;
+    public string sliderName;
+    public string swordLevel;
+
     
 }
