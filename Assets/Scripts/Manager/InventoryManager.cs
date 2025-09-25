@@ -19,7 +19,6 @@ public class InventoryManager : MonoBehaviour
     }
 
     public Dictionary<SwordData, PlayerSwordStats> playerSwords = new Dictionary<SwordData, PlayerSwordStats>();
-
     public void AddSword(SwordData swordData)
     {
         PlayerSwordStats stats;

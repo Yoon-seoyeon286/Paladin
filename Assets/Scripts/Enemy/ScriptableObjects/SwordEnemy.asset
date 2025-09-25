@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0604ea5f72fa74589986daa00fe1d62f, type: 3}
   m_Name: SwordEnemy
   m_EditorClassIdentifier: 
-  hp: 0
-  enemyName: 
+  hp: 200
+  enemyName: Sword
