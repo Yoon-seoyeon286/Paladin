@@ -1,27 +1,26 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SwordGhachSystem : MonoBehaviour
 {
-    public GameObject[] swordObjes;
-    public GameObject[] viewSwordObjec;
-    public RawImage[] swordImage;
+    public GameObject[] swordObjects;
+    public int pickCount = 4;
 
     public void GhachSword()
     {
-        List<GameObject> selectSwords = new List<GameObject>();
+        // swordObjes 배열을 기반으로 새 리스트를 생성.
+        List<GameObject> swordsToShuffle = new List<GameObject>(swordObjects);
 
-        for (int i = 0; i < 4; i++) //리스트에 랜덤 객체 4개를 넣기
+        // 피셔-예이츠 셔플 알고리즘을 사용하여 리스트를 무작위로 섞섞.
+        for (int i = 0; i < swordsToShuffle.Count; i++)
         {
-            int swapSword = Random.Range(0, swordObjes.Length);
-            selectSwords.Add(swordObjes[swapSword]);
+            int randomIndex = UnityEngine.Random.Range(i, swordsToShuffle.Count);
+            GameObject temp = swordsToShuffle[i];
+            swordsToShuffle[i] = swordsToShuffle[randomIndex];
+            swordsToShuffle[randomIndex] = temp;
         }
 
-        for (int i = 0; i < 4; i++) //4개의 이미지를 띄우고 해당 객체와 맞는 이미지를 활성화 
-        {
-            viewSwordObjec[i].SetActive(true); 
-
-        }
     }
 }
