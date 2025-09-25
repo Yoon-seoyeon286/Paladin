@@ -46,7 +46,7 @@ public class EnemyMove : MonoBehaviour
     {
         if (UIManager.instance.viewLevel % 10 == 0)
         {
-            damage += 50;
+            damage += 0.5f;
         }
 
         totalDamage += damage;

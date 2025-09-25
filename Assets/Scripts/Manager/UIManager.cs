@@ -1,4 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -30,6 +33,9 @@ public class UIManager : MonoBehaviour
     public Image inventoryImage;
     public Text[] coinText;
     int totalCoin = 0;
+    public RawImage coinNotEnough;
+
+
 
     [Header("Power Up")]
     public Image powerUPImage;
@@ -50,6 +56,10 @@ public class UIManager : MonoBehaviour
     public Slider[] swordLevelSlider;
     int swordTotalLevel = 0;
     int swordUpgradeCoin = 150;
+
+
+    [Header("Game over")]
+    public RawImage gameOver;
 
 
 
@@ -118,6 +128,19 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    //코인 부족 안내창
+    public void NotEnoughCoin()
+    {
+        coinNotEnough.gameObject.SetActive(true);
+        Task.FromResult(CoinMessage());
+
+    }
+
+    async Task CoinMessage()
+    {
+        await Task.Delay(1000);
+        coinNotEnough.gameObject.SetActive(false);
+    }
 
     //[PowerUp OnOff]
 
@@ -146,7 +169,7 @@ public class UIManager : MonoBehaviour
 
     //[shop]
 
-     //칼 상점 구매시 랜덤 뽑기 
+    //칼 상점 구매시 랜덤 뽑기 
     public void CashSword()
     {
         if (totalCoin >= buyCoin)
@@ -155,11 +178,15 @@ public class UIManager : MonoBehaviour
             swordGachaImage.SetActive(true);
 
             Invoke("SwordGachaImageOff", 5f);
+        }
 
+        else if (totalCoin <= buyCoin)
+        {
+            NotEnoughCoin();
         }
     }
 
-     //칼 랜덤 화면 끄기
+    //칼 랜덤 화면 끄기
     public void SwordGachaImageOff()
     {
         swordGachaImage.SetActive(false);
@@ -233,8 +260,11 @@ public class UIManager : MonoBehaviour
                      });
                 }
 
-                else return;
-           
+                else if (totalCoin < swordUpgradeCoin)
+                {
+                    NotEnoughCoin();
+                }
+
             }
         }
     }
@@ -260,6 +290,30 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
+    }
+
+
+
+
+    //게임 승패 관련
+
+
+    //게임 오버
+    public void GameOver()
+    {
+        gameOver.gameObject.SetActive(true);
+    }
+
+    //재시작 버튼
+    public void Restart()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    //나가기
+    public void OutGame()
+    {
+        Application.Quit();
     }
         
 
