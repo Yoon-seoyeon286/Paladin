@@ -244,6 +244,7 @@ MonoBehaviour:
   moveSpeed: 1.5
   stopDistance: 2
   player: {fileID: 6358049654783067754, guid: a9e6c394de235434f856aefcbe4c100a, type: 3}
+  totalDamage: 0
 --- !u!114 &2186800045468307497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,4 +257,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ae33fcd3b56426ca15e84e4bc0e0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 300
+  hp: 0
+  enemyData: {fileID: 11400000, guid: 4d827e17deee24749a6df5a556151b20, type: 2}

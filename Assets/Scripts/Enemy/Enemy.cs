@@ -4,11 +4,11 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable
 {
 
-    public float Hp = 100;
+    public int hp ;
 
     private Animator animator;
     int deadCount;
-
+    public EnemyData enemyData;
 
     private void Awake()
     {
@@ -19,21 +19,24 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Start()
     {
         deadCount = 0;
+       hp= enemyData.hp;
        
     }
 
 
-    public void Damage(float damage)
+    public void Damage(int damage)
     {
-        if (Hp <= 0) return;
+      
 
-        if (Hp > 0)
+        if (hp <= 0) return;
+
+        if (hp > 0)
         {
-            Hp -= damage;
+            hp -= damage;
 
-            if (Hp <= 0)
+            if (hp <= 0)
             {
-                Hp = 0;
+                hp = 0;
                 Task.FromResult(Die());
             }
         }

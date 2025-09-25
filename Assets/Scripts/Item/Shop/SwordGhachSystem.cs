@@ -39,11 +39,11 @@ public class SwordGhachSystem : MonoBehaviour
 
             if (currentSwordData != null)
             {
+                InventoryManager.instance.AddSword(currentSwordData);
                 swordLineColor[i].color = currentSwordData.baseColor;
                 swordImage[i].gameObject.SetActive(true);
                 swordImage[i].sprite = currentSwordData.swordImage;
               }  
-
 
         }
 

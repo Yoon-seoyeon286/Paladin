@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 40
   swordName: EpicSword
-  baseColor: {r: 0, g: 1, b: 0.76234245, a: 0}
+  baseColor: {r: 0, g: 1, b: 0.76234245, a: 1}
   swordImage: {fileID: 6319417779888107645, guid: 8783c0198a6694befbc268ff721287d9, type: 3}
+  coverName: E_S_Cover
+  sliderName: EpicSwordCount
+  swordLevel: EpicSwordLevel

@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 25
   swordName: UniqueSword
-  baseColor: {r: 0.5908783, g: 0.17443931, b: 0.754717, a: 0}
+  baseColor: {r: 0.5908783, g: 0.17443931, b: 0.754717, a: 1}
   swordImage: {fileID: 7048272957640718010, guid: 8783c0198a6694befbc268ff721287d9, type: 3}
+  coverName: U_S_Cover
+  sliderName: UniqueSwordCount
+  swordLevel: UniqueSwordLevel

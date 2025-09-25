@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 18
   swordName: RarSword
-  baseColor: {r: 1, g: 0.6885808, b: 0, a: 0}
+  baseColor: {r: 1, g: 0.6885808, b: 0, a: 1}
   swordImage: {fileID: 3667748512962673061, guid: 8783c0198a6694befbc268ff721287d9, type: 3}
+  coverName: R_S_Cover
+  sliderName: RarSwordCount
+  swordLevel: RarSwordLevel
