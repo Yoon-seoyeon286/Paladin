@@ -15,7 +15,7 @@ public class EquipAmorButton : MonoBehaviour
     {
         if (playerHealth != null && amorToEquip != null)
         {
-            //playerHealth.EquipAmor(amorToEquip.amorData);
+            playerHealth.EquipAmor(amorToEquip.amorData);
             UIManager.instance.SetSwordTextOn(amorUIName);
         }
     }

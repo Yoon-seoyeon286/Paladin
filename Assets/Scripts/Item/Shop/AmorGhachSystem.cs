@@ -10,7 +10,7 @@ public class AmorGhachSystem : MonoBehaviour
     public AmorData[] amorDatas;
     public int pickCount = 4;
 
-    public void GhachSword()
+    public void GhachAmor()
     {
         // swordObjes 배열을 기반으로 새 리스트를 생성.
         List<GameObject> AmorsToShuffle = new List<GameObject>(amorObjects);

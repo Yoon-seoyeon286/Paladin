@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f45020563a8a4b9ca00b65f386e47c3, type: 3}
   m_Name: UniqueAmor
   m_EditorClassIdentifier: 
-  baseHp: 0
-  amorName: 
-  baseColor: {r: 0, g: 0, b: 0, a: 0}
-  amorImage: {fileID: 0}
-  coverName: 
-  sliderName: 
-  amorLevel: 
+  baseHp: 22
+  amorName: UniqueAmor
+  baseColor: {r: 0.5921569, g: 0.17254902, b: 0.7529412, a: 1}
+  amorImage: {fileID: -81278887088342592, guid: 6c5320f1e147440f8a392684dd280b32, type: 3}
+  coverName: U_A_Cover
+  sliderName: UniqueAmorCount
+  amorLevel: UniqueAmorLevel

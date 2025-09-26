@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
     public float Hp { get; private set; }
+    public AmorData equippedAmor;
 
     Animator animator;
 
@@ -34,6 +35,23 @@ public class PlayerHealth : MonoBehaviour
                 Task.FromResult(Die());
             }
         }
+
+        if (equippedAmor != null)
+        {
+            int amorHp = equippedAmor.baseHp;
+            if (InventoryManager.instance.playerAmors.ContainsKey(equippedAmor))
+            {
+                PlayerAmorStats stats = InventoryManager.instance.playerAmors[equippedAmor];
+                if (stats.level > 1 && stats.level % 2 == 0)
+                {
+                    amorHp += 10;
+                }
+            }
+
+            Hp += amorHp;
+            UIManager.instance.SetAmorPlusHp(amorHp);
+
+        }
     }
 
     async Task Die()
@@ -41,6 +59,11 @@ public class PlayerHealth : MonoBehaviour
         GameManager.instance.GameOver();
         await Task.Delay(2500);
         Destroy(gameObject);
+    }
+
+    public void EquipAmor(AmorData amorData)
+    {
+        equippedAmor = amorData;
     }
 
   

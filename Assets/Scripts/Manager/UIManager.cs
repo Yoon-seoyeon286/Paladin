@@ -38,6 +38,8 @@ public class UIManager : MonoBehaviour
 
     [Header("Ghach")]
     public SwordGhachSystem swordGhachSystem;
+    public AmorGhachSystem AmorGhachSystem;
+
 
 
     [Header("Power Up")]
@@ -211,6 +213,8 @@ public class UIManager : MonoBehaviour
         {
             Coin.instance.UseCoin(buyCoin);
             amorGachaImage.SetActive(true);
+            AmorGhachSystem.GhachAmor();
+
 
 
             Invoke("AmorGachaImageOff", 2f);
@@ -228,11 +232,6 @@ public class UIManager : MonoBehaviour
         amorGachaImage.SetActive(false);
     }
 
-
-
-
-    
-    
 
 
 
