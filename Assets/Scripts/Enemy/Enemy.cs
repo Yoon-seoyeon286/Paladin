@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private Animator animator;
     int deadCount;
+    int totalDamage;
     public EnemyData enemyData;
 
     private void Awake()
@@ -26,13 +27,13 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void Damage(int damage)
     {
-      
+        totalDamage += damage;
 
         if (hp <= 0) return;
 
         if (hp > 0)
         {
-            hp -= damage;
+            hp -= totalDamage;
 
             if (hp <= 0)
             {

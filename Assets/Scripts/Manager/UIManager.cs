@@ -40,11 +40,11 @@ public class UIManager : MonoBehaviour
     public SwordGhachSystem swordGhachSystem;
 
 
-
     [Header("Power Up")]
     public Image powerUPImage;
     public int powerCoin;
     public int hpCoin;
+
 
     [Header("Shop")]
     public Image shopImage;
@@ -57,6 +57,8 @@ public class UIManager : MonoBehaviour
     public RawImage[] SwordcoverImage;
     public Text[] swordLevel;
     public Slider[] swordLevelSlider;
+    public Text plusDamage;
+    public Text plusHp;
 
 
     [Header("Game over")]
@@ -215,6 +217,7 @@ public class UIManager : MonoBehaviour
     //장착중 텍스트 활성화
     public void SetSwordTextOn(string swordName)
     {
+        plusDamage.gameObject.SetActive(true);
         
         foreach (Text textObject in swordSetText)
         {
@@ -226,11 +229,19 @@ public class UIManager : MonoBehaviour
             if (textObject.name == swordName)
             {
                 textObject.gameObject.SetActive(true);
+                
                 return;
             }
 
         }
     }
+
+    //장착 시 추가 대미지 업데이트
+    public void SetSwordPluseDamage(int damage)
+    {
+        plusDamage.text = "+" + damage.ToString();
+    }
+
 
     //Sword Level 활성화 및 레벨 텍스트 업데이트
     public void SwordLevelUpdate(int level, string swordLevelName)

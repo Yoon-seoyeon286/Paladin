@@ -4,8 +4,9 @@ public class Sword : MonoBehaviour
 {
     public SwordData swordData;
 
-    public void SwordAttack()
+    public void SwordAttack(IDamageable damageable)
     {
-        float damage = swordData.baseDamage;
+        damageable.Damage(swordData.baseDamage);
+        UIManager.instance.SetSwordPluseDamage(swordData.baseDamage);
     }
 }

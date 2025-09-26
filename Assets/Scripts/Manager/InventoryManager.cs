@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     private static InventoryManager m_instance;
+    public PlayerMove playerMove;
 
     public static InventoryManager instance
     {
@@ -16,6 +17,12 @@ public class InventoryManager : MonoBehaviour
             }
             return m_instance;
         }
+    }
+
+    public void Awake()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerMove = player.GetComponent<PlayerMove>();
     }
 
     public Dictionary<SwordData, PlayerSwordStats> playerSwords = new Dictionary<SwordData, PlayerSwordStats>();

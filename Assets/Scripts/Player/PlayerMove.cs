@@ -6,6 +6,8 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] public float AttackRange { get; private set; }
     Animator animator;
+    int totalDamage;
+    public Sword[] currentSword;
 
 
     void Awake()
@@ -59,10 +61,17 @@ public class PlayerMove : MonoBehaviour
 
     public void Smash(int damage)
     {
-
         foreach (IDamageable enemy in enemiesInRange)
         {
             enemy.Damage(damage);
+        }
+
+        if(currentSword!=null&&currentSword.Length>0&&currentSword[0]!=null)
+        {
+            foreach (IDamageable enemy in enemiesInRange)
+            {
+                currentSword[0].SwordAttack(enemy);
+            }
         }
     }
 

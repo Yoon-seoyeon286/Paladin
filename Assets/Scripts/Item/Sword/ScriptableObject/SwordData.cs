@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "SwordData", menuName = "Scriptable Objects/SwordData")]
 public class SwordData : ScriptableObject
 {
-    public float baseDamage;
+    public int baseDamage;
     public string swordName;
     public Color baseColor;
     public Sprite swordImage;
