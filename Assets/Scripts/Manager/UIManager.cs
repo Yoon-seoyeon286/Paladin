@@ -49,7 +49,8 @@ public class UIManager : MonoBehaviour
     [Header("Shop")]
     public Image shopImage;
     public GameObject swordGachaImage;
-    int buyCoin = 5;
+    public GameObject amorGachaImage;
+    int buyCoin = 500;
 
 
     [Header("Sword")]
@@ -61,9 +62,15 @@ public class UIManager : MonoBehaviour
     public Text plusHp;
 
 
+    [Header("Amor")]
+    public Text[] amorSetText;
+    public RawImage[] amorCoverImage;
+    public Text[] amorLevel;
+    public Slider[] amorLevelSlider;
+
+
     [Header("Game over")]
     public RawImage gameOver;
-
 
 
     //[Player]
@@ -181,10 +188,10 @@ public class UIManager : MonoBehaviour
             swordGachaImage.SetActive(true);
             swordGhachSystem.GhachSword();
 
-            Invoke("SwordGachaImageOff", 5f);
+            Invoke("SwordGachaImageOff", 2f);
         }
 
-        else if (totalCoin <= buyCoin)
+        else if (totalCoin < buyCoin)
         {
             NotEnoughCoin();
         }
@@ -195,6 +202,37 @@ public class UIManager : MonoBehaviour
     {
         swordGachaImage.SetActive(false);
     }
+
+
+    //방어구 가챠 뽑기
+    public void CashAmor()
+    {
+        if (totalCoin >= buyCoin)
+        {
+            Coin.instance.UseCoin(buyCoin);
+            amorGachaImage.SetActive(true);
+
+
+            Invoke("AmorGachaImageOff", 2f);
+        }
+
+        else if (totalCoin < buyCoin)
+        {
+            NotEnoughCoin();
+        }
+    }
+
+//가챠 끄기 방어구
+    public void AmorGachaImageOff()
+    {
+        amorGachaImage.SetActive(false);
+    }
+
+
+
+
+    
+    
 
 
 
@@ -277,7 +315,84 @@ public class UIManager : MonoBehaviour
 
 
 
-    //게임 승패 관련
+    //[Amor set]
+
+    // 커버 없애기(방어구)
+    public void AmoritemCover(string coverName)
+    {
+        foreach (RawImage itemCover in amorCoverImage)
+        {
+            if (itemCover.name == coverName)
+            {
+                itemCover.gameObject.SetActive(false);
+            }
+        }
+    }
+
+
+    //장착중 텍스트 활성화
+    
+        public void SetAmorTextOn(string amorName)
+    {
+        plusHp.gameObject.SetActive(true);
+        
+        foreach (Text textObject in amorSetText)
+        {
+            textObject.gameObject.SetActive(false);
+        }
+
+        foreach (Text textObject in amorSetText)
+        {
+            if (textObject.name == amorName)
+            {
+                textObject.gameObject.SetActive(true);
+                
+                return;
+            }
+
+        }
+    }
+
+    //장착 시 추가 체력 ㅌ텍스트  업데이트
+        public void SetAmorPlusHp(int hp)
+    {
+        plusHp.text = "+" + hp.ToString();
+    }
+
+    //Amor Level 활성화 및 레벨 텍스트 업데이트
+     public void AmorLevelUpdate(int level, string amorLevelName)
+    {
+        for (int i = 0; i < amorLevel.Length; i++)
+        {
+            if (amorLevel[i].name == amorLevelName)
+            {
+                amorLevel[i].text = level.ToString();
+            }
+        }
+
+    }
+
+    // 레벨 슬라이더 조정
+        public void AmorLevelSlider(int amorCount, string sliderName)
+    {
+        foreach (Slider levelSlider in amorLevelSlider)
+        {
+            if (levelSlider.name == sliderName)
+            {
+                levelSlider.value = amorCount;
+
+                if (amorCount % 4 == 0)
+                {
+                    levelSlider.maxValue *= 2;
+                }
+            }
+        }
+    }
+
+
+
+
+    //[게임 승패 관련]
 
 
     //게임 오버
