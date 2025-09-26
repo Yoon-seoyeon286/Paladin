@@ -1,12 +1,20 @@
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
     public SwordData swordData;
+    int finalDamage;
 
-    public void SwordAttack(IDamageable damageable)
+    /*public void SwordAttack(IDamageable damageable)
     {
-        damageable.Damage(swordData.baseDamage);
-        UIManager.instance.SetSwordPluseDamage(swordData.baseDamage);
-    }
+        finalDamage = swordData.baseDamage;
+
+        damageable.Damage(finalDamage);
+        UIManager.instance.SetSwordPluseDamage(finalDamage);
+
+        PlayerSwordStats stats;
+
+        stats = InventoryManager.instance.playerSwords[swordData];
+    }*/
 }

@@ -6,8 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] public float AttackRange { get; private set; }
     Animator animator;
-    int totalDamage;
-    public Sword[] currentSword;
+    public SwordData equippedSword;
 
 
     void Awake()
@@ -66,14 +65,31 @@ public class PlayerMove : MonoBehaviour
             enemy.Damage(damage);
         }
 
-        if(currentSword!=null&&currentSword.Length>0&&currentSword[0]!=null)
+        if (equippedSword != null)
         {
+            int swordDamage = equippedSword.baseDamage;
+            if (InventoryManager.instance.playerSwords.ContainsKey(equippedSword))
+            {
+                PlayerSwordStats stats = InventoryManager.instance.playerSwords[equippedSword];
+                if (stats.level > 1 && stats.level % 2 == 0)
+                {
+                    swordDamage += 10;
+                }
+            }
+
             foreach (IDamageable enemy in enemiesInRange)
             {
-                currentSword[0].SwordAttack(enemy);
+                enemy.Damage(swordDamage);
+                UIManager.instance.SetSwordPluseDamage(swordDamage);
             }
         }
     }
+
+    public void EquipSword(SwordData swordData)
+    {
+        equippedSword = swordData;
+    }
+
 
     void CleanDeadEnemies()
     {

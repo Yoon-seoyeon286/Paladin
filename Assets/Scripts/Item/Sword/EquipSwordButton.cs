@@ -15,7 +15,7 @@ public class EquipSwordButton : MonoBehaviour
     {
         if (playerMove != null && swordToEquip != null)
         {
-            playerMove.currentSword[0] = swordToEquip;
+            playerMove.EquipSword(swordToEquip.swordData);
             UIManager.instance.SetSwordTextOn(swordUIName);
         }
     }

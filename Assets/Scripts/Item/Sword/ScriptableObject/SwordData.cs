@@ -14,6 +14,5 @@ public class SwordData : ScriptableObject
     public string coverName;
     public string sliderName;
     public string swordLevel;
-
     
 }
