@@ -50,7 +50,7 @@ public class UIManager : MonoBehaviour
     public Image shopImage;
     public GameObject swordGachaImage;
     public GameObject amorGachaImage;
-    int buyCoin = 500;
+    int buyCoin = 5;
 
 
     [Header("Sword")]

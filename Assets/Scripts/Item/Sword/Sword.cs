@@ -4,7 +4,6 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     public SwordData swordData;
-    int finalDamage;
 
     /*public void SwordAttack(IDamageable damageable)
     {
