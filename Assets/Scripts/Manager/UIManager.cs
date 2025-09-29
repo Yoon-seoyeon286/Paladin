@@ -46,6 +46,8 @@ public class UIManager : MonoBehaviour
     public Image powerUPImage;
     public int powerCoin;
     public int hpCoin;
+    int totalHp = 0;
+    int totalAttack=0;
 
 
     [Header("Shop")]
@@ -276,7 +278,8 @@ public class UIManager : MonoBehaviour
     //장착 시 추가 대미지 업데이트
     public void SetSwordPluseDamage(int damage)
     {
-        plusDamage.text = "+" + damage.ToString();
+        totalAttack += damage;
+        plusDamage.text = "+" + totalAttack.ToString();
     }
 
 
@@ -355,7 +358,9 @@ public class UIManager : MonoBehaviour
     //장착 시 추가 체력 ㅌ텍스트  업데이트
         public void SetAmorPlusHp(int hp)
     {
-        plusHp.text = "+" + hp.ToString();
+        totalHp += hp;
+
+        plusHp.text = "+" + totalHp.ToString();
     }
 
     //Amor Level 활성화 및 레벨 텍스트 업데이트

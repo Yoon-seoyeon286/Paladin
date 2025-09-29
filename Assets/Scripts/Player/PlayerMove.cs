@@ -80,8 +80,10 @@ public class PlayerMove : MonoBehaviour
             foreach (IDamageable enemy in enemiesInRange)
             {
                 enemy.Damage(swordDamage);
-                UIManager.instance.SetSwordPluseDamage(swordDamage);
+               
             }
+            UIManager.instance.SetSwordPluseDamage(swordDamage);
+
         }
     }
 

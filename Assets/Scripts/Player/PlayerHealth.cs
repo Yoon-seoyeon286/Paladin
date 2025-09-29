@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     public float Hp { get; private set; }
     public AmorData equippedAmor;
+    public float plusHp;
 
     Animator animator;
 
@@ -18,6 +19,13 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         Hp = 100;
+    }
+
+
+
+    public void UpgradeHp(float plusHp)
+    {
+        Hp = plusHp;
     }
 
     public void Damage(float damage)
