@@ -54,13 +54,6 @@ public class UpgradeManager : MonoBehaviour
 
         if (Coin.instance.totalCoin >= attackNeedCoin)
         {
-            foreach (IDamageable enemiesInRange in enemies)
-            {
-                enemiesInRange.Damage(totalDamage);
-                       
-            }
-
-            upgradeAttackText.gameObject.SetActive(true);
 
             totalDamage += 50;
             attackNeedCoin *= 4;
@@ -68,7 +61,7 @@ public class UpgradeManager : MonoBehaviour
             Coin.instance.UseCoin(attackNeedCoin);
 
             upgrgdeCoinTextInAttack.text = attackNeedCoin.ToString() + "$";
-            UIManager.instance.SetSwordPluseDamage(totalDamage);
+   
         }
 
         else if (Coin.instance.totalCoin < attackNeedCoin)
@@ -83,15 +76,13 @@ public class UpgradeManager : MonoBehaviour
 
         if (Coin.instance.totalCoin >= hpNeedCoin)
         {
-            playerHealth.UpgradeHp(totalHp);
+
             totalHp += 50;
             hpNeedCoin *= 4;
 
-            upgradeHpText.gameObject.SetActive(true);
-
             upgradeCoinTextInHp.text = hpNeedCoin.ToString() + "$";
             Coin.instance.UseCoin(hpNeedCoin);
-            UIManager.instance.SetAmorPlusHp((int)totalHp);
+     
         }
 
         else if (Coin.instance.totalCoin < hpNeedCoin)

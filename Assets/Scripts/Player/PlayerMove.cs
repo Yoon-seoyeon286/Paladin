@@ -7,11 +7,14 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] public float AttackRange { get; private set; }
     Animator animator;
     public SwordData equippedSword;
+    public AudioSource audioSource;
+    public AudioClip smashAudioClip;
 
 
     void Awake()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -60,6 +63,7 @@ public class PlayerMove : MonoBehaviour
 
     public void Smash(int damage)
     {
+        audioSource.PlayOneShot(smashAudioClip);
         foreach (IDamageable enemy in enemiesInRange)
         {
             enemy.Damage(damage);
@@ -68,23 +72,35 @@ public class PlayerMove : MonoBehaviour
         if (equippedSword != null)
         {
             int swordDamage = equippedSword.baseDamage;
-            if (InventoryManager.instance.playerSwords.ContainsKey(equippedSword))
-            {
-                PlayerSwordStats stats = InventoryManager.instance.playerSwords[equippedSword];
-                if (stats.level > 1 && stats.level % 2 == 0)
-                {
-                    swordDamage += 10;
-                }
-            }
+            int smashBonus = GetSmashBonus();
+            int totalDamage = damage + swordDamage+smashBonus;
+
+            int sendDamage = GetSmashBonus() + swordDamage;
 
             foreach (IDamageable enemy in enemiesInRange)
             {
-                enemy.Damage(swordDamage);
+                enemy.Damage(totalDamage);
                
             }
-            UIManager.instance.SetSwordPluseDamage(swordDamage);
+            UIManager.instance.SetSwordPluseDamage(sendDamage);
 
         }
+    }
+
+    int GetSmashBonus()
+    {
+        if (equippedSword == null) return 0;
+
+        // 레벨이 짝수이면서 1 초과일 때만 +10 
+        if (InventoryManager.instance.playerSwords.ContainsKey(equippedSword))
+        {
+            PlayerSwordStats stats = InventoryManager.instance.playerSwords[equippedSword];
+            if (stats.level > 1 && stats.level % 2 == 0)
+            {
+                return 10;
+            }
+        }
+        return 0;
     }
 
     public void EquipSword(SwordData swordData)

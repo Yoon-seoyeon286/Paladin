@@ -65,8 +65,7 @@ public class PlayerHealth : MonoBehaviour
     async Task Die()
     {
         GameManager.instance.GameOver();
-        await Task.Delay(2500);
-        Destroy(gameObject);
+        await Task.Delay(100);
     }
 
     public void EquipAmor(AmorData amorData)

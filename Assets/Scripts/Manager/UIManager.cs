@@ -20,6 +20,16 @@ public class UIManager : MonoBehaviour
 
     static UIManager m_instance;
 
+    [Header("AudioSource")]
+    public AudioSource audioSource;
+    public AudioClip CoinNotEnoughSound;
+    public AudioClip UIOnButton;
+    public AudioClip GhachSound;
+    public AudioClip setItem;
+    public AudioClip dead;
+ 
+
+
     [Header("Hp_Bar image")]
     public Image hpBarImage;
 
@@ -46,15 +56,14 @@ public class UIManager : MonoBehaviour
     public Image powerUPImage;
     public int powerCoin;
     public int hpCoin;
-    int totalHp = 0;
-    int totalAttack=0;
+
 
 
     [Header("Shop")]
     public Image shopImage;
     public GameObject swordGachaImage;
     public GameObject amorGachaImage;
-    int buyCoin = 5;
+    int buyCoin = 10;
 
 
     [Header("Sword")]
@@ -75,6 +84,12 @@ public class UIManager : MonoBehaviour
 
     [Header("Game over")]
     public RawImage gameOver;
+
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
 
     //[Player]
@@ -108,6 +123,7 @@ public class UIManager : MonoBehaviour
 
     public void InventoryOnButton()
     {
+        audioSource.PlayOneShot(UIOnButton);
         inventoryImage.gameObject.SetActive(true);
     }
 
@@ -145,6 +161,7 @@ public class UIManager : MonoBehaviour
     //코인 부족 안내창
     public void NotEnoughCoin()
     {
+        audioSource.PlayOneShot(CoinNotEnoughSound);
         coinNotEnough.gameObject.SetActive(true);
         Task.FromResult(CoinMessage());
 
@@ -160,6 +177,7 @@ public class UIManager : MonoBehaviour
 
     public void OnPowerUpButton()
     {
+        audioSource.PlayOneShot(UIOnButton);
         powerUPImage.gameObject.SetActive(true);
     }
 
@@ -173,6 +191,7 @@ public class UIManager : MonoBehaviour
 
     public void OnShopButton()
     {
+        audioSource.PlayOneShot(UIOnButton);
         shopImage.gameObject.SetActive(true);
     }
 
@@ -188,6 +207,8 @@ public class UIManager : MonoBehaviour
     {
         if (totalCoin >= buyCoin)
         {
+           
+            audioSource.PlayOneShot(GhachSound);
             Coin.instance.UseCoin(buyCoin);
             swordGachaImage.SetActive(true);
             swordGhachSystem.GhachSword();
@@ -213,6 +234,8 @@ public class UIManager : MonoBehaviour
     {
         if (totalCoin >= buyCoin)
         {
+       
+            audioSource.PlayOneShot(GhachSound);
             Coin.instance.UseCoin(buyCoin);
             amorGachaImage.SetActive(true);
             AmorGhachSystem.GhachAmor();
@@ -256,6 +279,7 @@ public class UIManager : MonoBehaviour
     //장착중 텍스트 활성화
     public void SetSwordTextOn(string swordName)
     {
+        audioSource.PlayOneShot(setItem);
         plusDamage.gameObject.SetActive(true);
         
         foreach (Text textObject in swordSetText)
@@ -278,8 +302,7 @@ public class UIManager : MonoBehaviour
     //장착 시 추가 대미지 업데이트
     public void SetSwordPluseDamage(int damage)
     {
-        totalAttack += damage;
-        plusDamage.text = "+" + totalAttack.ToString();
+        plusDamage.text = "+" + damage.ToString();
     }
 
 
@@ -336,6 +359,7 @@ public class UIManager : MonoBehaviour
     
         public void SetAmorTextOn(string amorName)
     {
+        audioSource.PlayOneShot(setItem);
         plusHp.gameObject.SetActive(true);
         
         foreach (Text textObject in amorSetText)
@@ -358,9 +382,8 @@ public class UIManager : MonoBehaviour
     //장착 시 추가 체력 ㅌ텍스트  업데이트
         public void SetAmorPlusHp(int hp)
     {
-        totalHp += hp;
 
-        plusHp.text = "+" + totalHp.ToString();
+        plusHp.text = "+" + hp.ToString();
     }
 
     //Amor Level 활성화 및 레벨 텍스트 업데이트
@@ -402,6 +425,7 @@ public class UIManager : MonoBehaviour
     //게임 오버
     public void GameOver()
     {
+        audioSource.PlayOneShot(dead);
         gameOver.gameObject.SetActive(true);
     }
 

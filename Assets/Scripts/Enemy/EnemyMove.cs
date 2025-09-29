@@ -44,11 +44,7 @@ public class EnemyMove : MonoBehaviour
 
     public void Attack(float damage)
     {
-        if (UIManager.instance.viewLevel % 10 == 0)
-        {
-            damage += 0.5f;
-        }
-
+    
         totalDamage += damage;
 
 
